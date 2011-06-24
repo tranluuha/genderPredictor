@@ -5,7 +5,7 @@ genderPredictor.py
 """
 
 from nltk import NaiveBayesClassifier,classify
-import USNameLoader
+import USSSALoader
 import random
 
 class genderPredictor():
@@ -54,7 +54,7 @@ class genderPredictor():
         return self.classifier.most_informative_features(n)
         
     def _loadNames(self):
-        return USNameLoader.getNameList()
+        return USSSALoader.getNameList()
         
     def _nameFeatures(self,name):
         name=name.upper()
@@ -73,5 +73,5 @@ if __name__ == "__main__":
     for feat in feats:
         print '\t%s = %s'%feat
     
-    print '\nDavid is classified as %s'%gp.classify('David')
+    print '\nStephen is classified as %s'%gp.classify('Stephen')
      

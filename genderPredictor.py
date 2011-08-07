@@ -61,7 +61,7 @@ class genderPredictor():
         return {
             'last_letter': name[-1],
             'last_two' : name[-2:],
-            'last_is_vowel' : (name[-1] in 'aeiouy')
+            'last_is_vowel' : (name[-1] in 'AEIOUY')
         }
 
 if __name__ == "__main__":

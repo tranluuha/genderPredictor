@@ -9,7 +9,7 @@ import urllib2
 from zipfile import ZipFile
 import csv
 import pickle
-        
+
 def getNameList():
     if not os.path.exists('names.pickle'):
         print 'names.pickle does not exist, generating'
@@ -33,7 +33,10 @@ def getNameList():
                 maleNames.append(tuple)
             elif counts[1]>counts[0]:
                 femaleNames.append(tuple)
-        
+            else:
+                maleNames.append(tuple)
+                femaleNames.append(tuple)
+
         names=(maleNames,femaleNames)
         
         print 'Saving names.pickle'

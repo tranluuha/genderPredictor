@@ -14,12 +14,19 @@ class genderPredictor():
         maleNames,femaleNames=self._loadNames()
         
         featureset = list()
+        
         for nameTuple in maleNames:
             features = self._nameFeatures(nameTuple[0])
+            male_prob, female_prob = self._getProbDistr(nameTuple)
+            features['male_prob'] = male_prob
+            features['female_prob'] = female_prob
             featureset.append((features,'M'))
         
         for nameTuple in femaleNames:
             features = self._nameFeatures(nameTuple[0])
+            male_prob, female_prob = self._getProbDistr(nameTuple)
+            features['male_prob'] = male_prob
+            features['female_prob'] = female_prob
             featureset.append((features,'F'))
     
         return featureset
@@ -49,6 +56,17 @@ class genderPredictor():
         
     def test(self,test_set):
        return classify.accuracy(self.classifier,test_set)
+    
+    def _getProbDistr(self,nameTuple):
+            male_prob = (nameTuple[1] * 1.0) / (nameTuple[1] + nameTuple[2])
+            if male_prob == 1.0:
+                male_prob = 0.99
+            elif male_prob == 0.0:
+                male_prob = 0.01
+            else:
+                pass
+            female_prob = 1.0 - male_prob
+            return (male_prob, female_prob)
         
     def getMostInformativeFeatures(self,n=5):
         return self.classifier.most_informative_features(n)
@@ -61,6 +79,7 @@ class genderPredictor():
         return {
             'last_letter': name[-1],
             'last_two' : name[-2:],
+            'last_three': name[-3:],
             'last_is_vowel' : (name[-1] in 'AEIOUY')
         }
 
@@ -72,6 +91,6 @@ if __name__ == "__main__":
     feats=gp.getMostInformativeFeatures(10)
     for feat in feats:
         print '\t%s = %s'%feat
-    
-    print '\nStephen is classified as %s'%gp.classify('Stephen')
+    name = raw_input('Enter name to classify: ')
+    print '\n%s is classified as %s'%(name, gp.classify(name))
      

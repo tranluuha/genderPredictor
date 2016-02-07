@@ -82,4 +82,3 @@ def extractNamesDict():
     return names
 if __name__ == "__main__":
     getNameList()
-        

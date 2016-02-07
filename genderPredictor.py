@@ -91,6 +91,6 @@ if __name__ == "__main__":
     feats=gp.getMostInformativeFeatures(10)
     for feat in feats:
         print '\t%s = %s'%feat
-    #name = raw_input('Enter name to classify: ')
-    print '\nStephen is classified as %s'%gp.classify('Stephen')
+    name = raw_input('Enter name to classify: ')
+    print '\n%s is classified as %s'%(name, gp.classify(name))
      

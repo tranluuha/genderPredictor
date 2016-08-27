@@ -49,6 +49,10 @@ class genderPredictor():
     def classify(self,name):
         feats=self._nameFeatures(name)
         return self.classifier.classify(feats)
+
+    def prob_classify(self, name):
+        feats = self._nameFeatures(name)
+        return self.classifier.prob_classify(feats)
         
     def train(self,train_set):
         self.classifier = NaiveBayesClassifier.train(train_set)

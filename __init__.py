@@ -1,1 +1,1 @@
-from overfit.text.genderPredictor.genderPredictor import genderPredictor
+from third_party.genderPredictor.genderPredictor import genderPredictor as GenderPredictor
